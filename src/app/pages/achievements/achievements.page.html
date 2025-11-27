@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Suas metas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="achievements-container">
+    <!-- Conquistas Desbloqueadas -->
+    <ion-card class="section-card" *ngIf="unlockedAchievements.length > 0">
+      <ion-card-header>
+        <ion-card-title class="section-title">
+          <ion-icon name="trophy-outline" color="warning"></ion-icon>
+          Você conseguiu! ({{ unlockedAchievements.length }})
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="achievements-grid">
+          <div *ngFor="let achievement of unlockedAchievements" class="achievement-item unlocked">
+            <div class="achievement-icon">
+              <ion-icon [name]="achievement.icon" [color]="achievement.color"></ion-icon>
+            </div>
+            <div class="achievement-content">
+              <h3>{{ achievement.title }}</h3>
+              <p>{{ achievement.description }}</p>
+              <ion-chip color="success" size="small">
+                <ion-icon name="star-outline"></ion-icon>
+                <ion-label>Feito!</ion-label>
+              </ion-chip>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Conquistas Bloqueadas -->
+    <ion-card class="section-card">
+      <ion-card-header>
+        <ion-card-title class="section-title">
+          <ion-icon name="medal-outline" color="medium"></ion-icon>
+          Próximas metas ({{ lockedAchievements.length }})
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="achievements-grid">
+          <div *ngFor="let achievement of lockedAchievements" class="achievement-item locked">
+            <div class="achievement-icon">
+              <ion-icon [name]="achievement.icon" color="medium"></ion-icon>
+            </div>
+            <div class="achievement-content">
+              <h3>{{ achievement.title }}</h3>
+              <p>{{ achievement.description }}</p>
+              <div class="progress-section">
+                <div class="progress-text">
+                  {{ formatProgress(achievement) }}
+                </div>
+                <ion-progress-bar 
+                  [value]="getProgressPercentage(achievement) / 100"
+                  [color]="achievement.color">
+                </ion-progress-bar>
+                <div class="progress-percentage">
+                  {{ getProgressPercentage(achievement).toFixed(0) }}%
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Estado Vazio -->
+    <ion-card class="empty-state" *ngIf="achievements.length === 0">
+      <ion-card-content>
+        <div class="empty-content">
+          <ion-icon name="trophy-outline" size="large" color="medium"></ion-icon>
+          <h2>Ainda não tem metas</h2>
+          <p>Comece a caminhar para conquistar suas primeiras metas!</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

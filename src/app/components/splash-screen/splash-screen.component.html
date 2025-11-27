@@ -1,0 +1,71 @@
+<div class="splash-container" [class.fade-out]="!showSplash">
+  <div class="splash-content">
+    <!-- Logo Principal -->
+    <div class="logo-container">
+      <div class="app-logo">
+        <div class="logo-circle">
+          <!-- Boneco Caminhando (SVG mais natural) -->
+          <svg class="walking-figure" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cabeça mais realista -->
+            <circle cx="60" cy="25" r="12" fill="#FDB462" stroke="#E8A54A" stroke-width="1" class="head"/>
+            
+            <!-- Cabelo -->
+            <path d="M 48 20 Q 60 10 72 20 Q 68 15 60 15 Q 52 15 48 20" fill="#8B4513" class="hair"/>
+            
+            <!-- Olhos -->
+            <circle cx="56" cy="23" r="1.5" fill="#333" class="eye-left"/>
+            <circle cx="64" cy="23" r="1.5" fill="#333" class="eye-right"/>
+            
+            <!-- Sorriso -->
+            <path d="M 55 28 Q 60 32 65 28" stroke="#333" stroke-width="1" fill="none" class="smile"/>
+            
+            <!-- Corpo mais natural -->
+            <ellipse cx="60" cy="50" rx="8" ry="18" fill="#4CAF50" class="body"/>
+            
+            <!-- Braços mais naturais -->
+            <ellipse cx="48" cy="45" rx="3" ry="12" fill="#FDB462" class="arm-left" transform-origin="48 40"/>
+            <ellipse cx="72" cy="45" rx="3" ry="12" fill="#FDB462" class="arm-right" transform-origin="72 40"/>
+            
+            <!-- Mãos -->
+            <circle cx="45" cy="52" r="3" fill="#FDB462" class="hand-left"/>
+            <circle cx="75" cy="52" r="3" fill="#FDB462" class="hand-right"/>
+            
+            <!-- Pernas mais naturais -->
+            <ellipse cx="55" cy="75" rx="4" ry="15" fill="#2196F3" class="leg-left" transform-origin="55 65"/>
+            <ellipse cx="65" cy="75" rx="4" ry="15" fill="#2196F3" class="leg-right" transform-origin="65 65"/>
+            
+            <!-- Sapatos mais realistas -->
+            <ellipse cx="53" cy="92" rx="8" ry="4" fill="#8B4513" class="shoe-left"/>
+            <ellipse cx="67" cy="92" rx="8" ry="4" fill="#8B4513" class="shoe-right"/>
+            
+            <!-- Detalhes dos sapatos -->
+            <ellipse cx="53" cy="91" rx="6" ry="2" fill="#A0522D" class="shoe-detail-left"/>
+            <ellipse cx="67" cy="91" rx="6" ry="2" fill="#A0522D" class="shoe-detail-right"/>
+            
+            <!-- Cadarços -->
+            <path d="M 49 89 L 57 89 M 51 91 L 55 91" stroke="#654321" stroke-width="0.8" class="lace-left"/>
+            <path d="M 63 89 L 71 89 M 65 91 L 69 91" stroke="#654321" stroke-width="0.8" class="lace-right"/>
+            
+            <!-- Trilha de passos -->
+            <ellipse cx="35" cy="100" rx="4" ry="2" fill="rgba(255,255,255,0.3)" class="footprint-1"/>
+            <ellipse cx="25" cy="105" rx="4" ry="2" fill="rgba(255,255,255,0.2)" class="footprint-2"/>
+            <ellipse cx="15" cy="110" rx="4" ry="2" fill="rgba(255,255,255,0.1)" class="footprint-3"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Nome do App -->
+      <h1 class="app-name">AndarBem</h1>
+      <p class="app-tagline">Sua jornada de bem-estar</p>
+    </div>
+
+    <!-- Indicador de Carregamento -->
+    <div class="loading-indicator">
+      <div class="loading-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+</div>

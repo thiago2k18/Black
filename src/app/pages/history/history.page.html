@@ -1,0 +1,70 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Histórico</ion-title>
+    <ion-buttons slot="end" *ngIf="activities.length > 0">
+      <ion-button fill="clear" (click)="clearAllHistory()">
+        <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="history-container">
+    <ion-card *ngIf="activities.length === 0" class="empty-state">
+      <ion-card-content>
+        <div class="empty-content">
+          <ion-icon name="walk-outline" size="large" color="medium"></ion-icon>
+          <h2>Ainda não tem caminhadas</h2>
+          <p>Suas aventuras vão aparecer aqui depois que você terminar!</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-list *ngIf="activities.length > 0">
+      <ion-item *ngFor="let activity of activities" class="activity-item">
+        <div class="activity-content">
+          <div class="activity-header">
+            <h3>{{ formatDate(activity.createdAt) }}</h3>
+            <div class="header-actions">
+              <ion-chip color="success" size="small">
+                <ion-icon name="trophy-outline"></ion-icon>
+                <ion-label>Feito!</ion-label>
+              </ion-chip>
+              <ion-button 
+                fill="clear" 
+                size="small" 
+                color="danger" 
+                (click)="deleteActivity(activity)"
+                class="delete-btn">
+                <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+          
+          <div class="activity-metrics">
+            <div class="metric">
+              <ion-icon name="walk-outline" color="primary"></ion-icon>
+              <span>{{ formatDistance(activity.distance) }}</span>
+            </div>
+            <div class="metric">
+              <ion-icon name="time-outline" color="secondary"></ion-icon>
+              <span>{{ formatDuration(activity.duration) }}</span>
+            </div>
+            <div class="metric">
+              <ion-icon name="footsteps-outline" color="tertiary"></ion-icon>
+              <span>{{ activity.steps }} passos</span>
+            </div>
+            <div class="metric">
+              <ion-icon name="speedometer-outline" color="warning"></ion-icon>
+              <span>{{ (activity.averageSpeed * 3.6).toFixed(1) }} km/h</span>
+            </div>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

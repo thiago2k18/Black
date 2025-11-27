@@ -1,0 +1,153 @@
+.settings-container {
+  padding: 16px;
+}
+
+.settings-card {
+  margin-bottom: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+
+    ion-icon {
+      font-size: 22px;
+    }
+  }
+
+  ion-list {
+    background: transparent;
+  }
+
+  ion-item {
+    --padding-start: 0;
+    --padding-end: 0;
+    --min-height: 56px;
+    margin: 4px 0;
+    border-radius: 8px;
+
+    &[disabled] {
+      opacity: 0.5;
+    }
+
+    ion-label {
+      h3 {
+        font-weight: 600;
+        color: var(--ion-color-dark);
+        margin-bottom: 4px;
+      }
+
+      p {
+        font-size: 14px;
+        color: var(--ion-color-medium);
+        margin: 0;
+      }
+    }
+  }
+}
+
+.goal-setting {
+  margin-bottom: 24px;
+
+  ion-label {
+    display: block;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+    margin-bottom: 8px;
+  }
+
+  ion-range {
+    --bar-height: 6px;
+    --bar-border-radius: 3px;
+    --knob-size: 20px;
+    padding: 8px 0;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  ion-button {
+    --border-radius: 12px;
+    height: 48px;
+    text-transform: none;
+    font-weight: 600;
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 8px;
+  }
+
+  .settings-card {
+    margin-bottom: 12px;
+  }
+
+  .goal-setting {
+    margin-bottom: 20px;
+  }
+}
+
+// Animações
+.settings-card {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Estados de toggle
+ion-toggle {
+  --background: var(--ion-color-light);
+  --background-checked: var(--ion-color-primary);
+  --handle-background: white;
+  --handle-background-checked: white;
+}
+
+// Estilos de select
+ion-select {
+  --placeholder-color: var(--ion-color-medium);
+  --color: var(--ion-color-dark);
+}
+
+// Tema escuro
+@media (prefers-color-scheme: dark) {
+  .settings-card {
+    background: var(--ion-color-dark);
+    
+    ion-card-title {
+      color: var(--ion-color-light);
+    }
+
+    ion-item {
+      ion-label {
+        h3 {
+          color: var(--ion-color-light);
+        }
+      }
+    }
+  }
+
+  .goal-setting {
+    ion-label {
+      color: var(--ion-color-light);
+    }
+  }
+}

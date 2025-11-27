@@ -1,0 +1,113 @@
+/*
+ * App Global CSS - AndarBem
+ * ----------------------------------------------------------------------------
+ * Estilos globais para um design mais natural e orgânico
+ */
+
+/* Tema natural personalizado - DEVE vir antes dos imports */
+@use "./theme/natural-theme.scss";
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Variáveis de cores naturais */
+:root {
+  --ion-color-primary: #3498db;
+  --ion-color-primary-rgb: 52, 152, 219;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #2980b9;
+  --ion-color-primary-tint: #5dade2;
+
+  --ion-color-secondary: #2ecc71;
+  --ion-color-secondary-rgb: 46, 204, 113;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #27ae60;
+  --ion-color-secondary-tint: #58d68d;
+
+  --ion-color-tertiary: #f39c12;
+  --ion-color-tertiary-rgb: 243, 156, 18;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #e67e22;
+  --ion-color-tertiary-tint: #f5b041;
+
+  /* Cores de fundo mais suaves */
+  --ion-background-color: #fafafa;
+  --ion-background-color-rgb: 250, 250, 250;
+  
+  /* Tipografia mais natural */
+  --ion-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Estilos globais para cards */
+ion-card {
+  border-radius: 12px !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #f1f3f4 !important;
+}
+
+/* Estilos para botões */
+ion-button {
+  --border-radius: 8px;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+
+/* Toolbar mais limpa */
+ion-toolbar {
+  --background: white;
+  --color: #2c3e50;
+  --border-color: #e8e8e8;
+}
+
+/* Títulos mais naturais */
+ion-title {
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import '@ionic/angular/css/palettes/dark.system.css';
+
+/* Correção para evitar fundo branco no rodapé/menu */
+ion-app {
+  background: var(--ion-background-color, #f8f9fa) !important;
+}
+
+ion-content {
+  --background: var(--ion-background-color, #f8f9fa);
+}
+
+/* Garantir que o menu tenha fundo escuro */
+ion-menu {
+  --background: #2c3e50 !important;
+  --color: #ecf0f1 !important;
+}
+
+/* Evitar áreas brancas no rodapé */
+body {
+  background: var(--ion-background-color, #f8f9fa) !important;
+}

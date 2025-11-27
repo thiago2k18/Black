@@ -1,0 +1,22 @@
+<div class="offline-map-container">
+  <canvas #canvasMap class="offline-map-canvas"></canvas>
+  
+  <div class="map-overlay">
+    <div class="offline-indicator">
+      <ion-icon name="wifi-outline" [style.color]="'#ff6b6b'"></ion-icon>
+      <span>Modo Offline</span>
+    </div>
+  </div>
+  
+  <div class="map-controls">
+    <button class="map-btn" (click)="zoomIn()">
+      <ion-icon name="add-outline"></ion-icon>
+    </button>
+    <button class="map-btn" (click)="zoomOut()">
+      <ion-icon name="remove-outline"></ion-icon>
+    </button>
+    <button class="map-btn" (click)="centerOnUser()" *ngIf="currentPosition">
+      <ion-icon name="locate-outline"></ion-icon>
+    </button>
+  </div>
+</div>

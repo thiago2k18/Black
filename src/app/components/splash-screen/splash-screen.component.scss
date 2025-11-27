@@ -1,0 +1,355 @@
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
+.splash-content {
+  text-align: center;
+  color: white;
+  animation: slideInUp 1s ease-out;
+}
+
+.logo-container {
+  margin-bottom: 40px;
+}
+
+.app-logo {
+  margin-bottom: 24px;
+}
+
+.logo-circle {
+  width: 120px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.walking-figure {
+  width: 80px;
+  height: 80px;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+
+/* Animações do boneco caminhando mais naturais */
+.leg-left {
+  animation: walkLeft 1.2s infinite ease-in-out;
+  transform-origin: 55px 65px;
+}
+
+.leg-right {
+  animation: walkRight 1.2s infinite ease-in-out;
+  transform-origin: 65px 65px;
+}
+
+.arm-left {
+  animation: armSwingLeft 1.2s infinite ease-in-out;
+  transform-origin: 48px 40px;
+}
+
+.arm-right {
+  animation: armSwingRight 1.2s infinite ease-in-out;
+  transform-origin: 72px 40px;
+}
+
+.hand-left {
+  animation: handSwingLeft 1.2s infinite ease-in-out;
+}
+
+.hand-right {
+  animation: handSwingRight 1.2s infinite ease-in-out;
+}
+
+.shoe-left {
+  animation: shoeLeft 1.2s infinite ease-in-out;
+}
+
+.shoe-right {
+  animation: shoeRight 1.2s infinite ease-in-out;
+}
+
+.shoe-detail-left {
+  animation: shoeLeft 1.2s infinite ease-in-out;
+}
+
+.shoe-detail-right {
+  animation: shoeRight 1.2s infinite ease-in-out;
+}
+
+/* Animação da trilha de passos */
+.footprint-1 {
+  animation: footprintFade 2s infinite ease-in-out;
+}
+
+.footprint-2 {
+  animation: footprintFade 2s infinite ease-in-out 0.3s;
+}
+
+.footprint-3 {
+  animation: footprintFade 2s infinite ease-in-out 0.6s;
+}
+
+/* Animação do sorriso */
+.smile {
+  animation: smile 3s infinite ease-in-out;
+}
+
+/* Piscar dos olhos */
+.eye-left, .eye-right {
+  animation: blink 4s infinite ease-in-out;
+}
+
+.app-name {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInScale 1.2s ease-out 0.5s both;
+}
+
+.app-tagline {
+  font-size: 16px;
+  font-weight: 300;
+  margin: 0;
+  opacity: 0.9;
+  animation: fadeIn 1s ease-out 1s both;
+}
+
+.loading-indicator {
+  margin-top: 40px;
+}
+
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: dotPulse 1.5s infinite ease-in-out;
+
+  &:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+}
+
+/* Animações */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes walkLeft {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes walkRight {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-15deg);
+  }
+}
+
+@keyframes armSwingLeft {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes armSwingRight {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+}
+
+@keyframes shoeLeft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes shoeRight {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2px);
+  }
+  75% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Novas animações para o boneco mais natural */
+@keyframes handSwingLeft {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(-2px) translateY(-3px);
+  }
+}
+
+@keyframes handSwingRight {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  50% {
+    transform: translateX(2px) translateY(-3px);
+  }
+}
+
+@keyframes footprintFade {
+  0%, 100% {
+    opacity: 0.1;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes smile {
+  0%, 100% {
+    stroke-width: 1;
+  }
+  50% {
+    stroke-width: 1.5;
+  }
+}
+
+@keyframes blink {
+  0%, 90%, 100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .logo-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .walking-figure {
+    width: 70px;
+    height: 70px;
+  }
+
+  .app-name {
+    font-size: 28px;
+  }
+
+  .app-tagline {
+    font-size: 14px;
+  }
+}

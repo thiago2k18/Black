@@ -1,0 +1,225 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Início</ion-title>
+    <ion-buttons slot="end">
+      <ion-chip [color]="syncStatusColor" size="small" class="sync-chip" (click)="forcSync()">
+        <ion-icon name="refresh-outline"></ion-icon>
+        <ion-label>{{ syncStatusText }}</ion-label>
+      </ion-chip>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- Seção de Boas-vindas -->
+  <div class="welcome-section">
+    <div class="welcome-content">
+      <h1>E aí! 👋</h1>
+      <p>Bora caminhar um pouco hoje?</p>
+    </div>
+  </div>
+
+  <!-- Botão Principal - Nova Atividade -->
+  <div class="main-action">
+    <ion-button 
+      expand="block" 
+      size="large" 
+      color="success" 
+      (click)="startNewActivity()"
+      class="start-activity-btn">
+      <ion-icon name="walk-outline" slot="start"></ion-icon>
+      Vamos caminhar!
+    </ion-button>
+  </div>
+
+  <!-- Progresso Diário -->
+  <ion-card class="progress-card">
+    <ion-card-header>
+      <ion-card-title>Como você está hoje</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <!-- Passos -->
+          <ion-col size="12" size-md="4">
+            <div class="progress-item">
+              <div class="progress-header">
+                <ion-icon name="walk-outline" color="primary"></ion-icon>
+                <span class="progress-label">Passos</span>
+              </div>
+              <div class="progress-value">
+                {{ todayProgress.steps.toLocaleString() }} / {{ dailyGoals.steps.toLocaleString() }}
+              </div>
+              <ion-progress-bar 
+                [value]="stepsProgress / 100" 
+                color="primary">
+              </ion-progress-bar>
+              <div class="progress-percentage">{{ stepsProgress.toFixed(0) }}%</div>
+            </div>
+          </ion-col>
+
+          <!-- Distância -->
+          <ion-col size="12" size-md="4">
+            <div class="progress-item">
+              <div class="progress-header">
+                <ion-icon name="walk-outline" color="secondary"></ion-icon>
+                <span class="progress-label">Distância</span>
+              </div>
+              <div class="progress-value">
+                {{ formattedDistance }} / {{ (dailyGoals.distance / 1000).toFixed(1) }} km
+              </div>
+              <ion-progress-bar 
+                [value]="distanceProgress / 100" 
+                color="secondary">
+              </ion-progress-bar>
+              <div class="progress-percentage">{{ distanceProgress.toFixed(0) }}%</div>
+            </div>
+          </ion-col>
+
+          <!-- Tempo -->
+          <ion-col size="12" size-md="4">
+            <div class="progress-item">
+              <div class="progress-header">
+                <ion-icon name="time-outline" color="tertiary"></ion-icon>
+                <span class="progress-label">Tempo</span>
+              </div>
+              <div class="progress-value">
+                {{ formattedDuration }} / 1h
+              </div>
+              <ion-progress-bar 
+                [value]="durationProgress / 100" 
+                color="tertiary">
+              </ion-progress-bar>
+              <div class="progress-percentage">{{ durationProgress.toFixed(0) }}%</div>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <!-- Calorias -->
+        <ion-row>
+          <ion-col size="12">
+            <div class="calories-section">
+              <ion-icon name="fitness-outline" color="danger"></ion-icon>
+              <span class="calories-text">
+                {{ todayProgress.calories }} calorias queimadas hoje
+                <small style="display: block; opacity: 0.6; font-size: 11px;">
+                  *Cálculo em desenvolvimento
+                </small>
+              </span>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Estatísticas Gerais -->
+  <ion-card class="stats-card" *ngIf="activityStats">
+    <ion-card-header>
+      <ion-card-title>Seu histórico</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="3">
+            <div class="stat-item">
+              <div class="stat-value">{{ activityStats.totalActivities }}</div>
+              <div class="stat-label">Caminhadas</div>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <div class="stat-item">
+              <div class="stat-value">{{ formattedTotalDistance }}</div>
+              <div class="stat-label">Total percorrido</div>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <div class="stat-item">
+              <div class="stat-value">{{ formattedTotalDuration }}</div>
+              <div class="stat-label">Tempo caminhando</div>
+            </div>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <div class="stat-item">
+              <div class="stat-value">{{ averageSpeedKmh }} km/h</div>
+              <div class="stat-label">Seu ritmo</div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Ações Rápidas -->
+  <ion-card class="quick-actions-card">
+    <ion-card-header>
+      <ion-card-title>Acesso rápido</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" size-md="3">
+            <ion-button 
+              expand="block" 
+              fill="outline" 
+              (click)="viewHistory()"
+              class="quick-action-btn">
+              <ion-icon name="library-outline" slot="top"></ion-icon>
+              Minhas caminhadas
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button 
+              expand="block" 
+              fill="outline" 
+              (click)="viewAchievements()"
+              class="quick-action-btn">
+              <ion-icon name="trophy-outline" slot="top"></ion-icon>
+              Metas
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button 
+              expand="block" 
+              fill="outline" 
+              (click)="viewMaps()"
+              class="quick-action-btn">
+              <ion-icon name="map-outline" slot="top"></ion-icon>
+              Mapas
+            </ion-button>
+          </ion-col>
+          <ion-col size="6" size-md="3">
+            <ion-button 
+              expand="block" 
+              fill="outline" 
+              (click)="scheduleActivityReminder()"
+              class="quick-action-btn">
+              <ion-icon name="time-outline" slot="top"></ion-icon>
+              Me lembrar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Metas Completadas -->
+  <ion-card class="achievements-card" *ngIf="completedGoals.length > 0">
+    <ion-card-content>
+      <div class="achievement-celebration">
+        <ion-icon name="star-outline" color="warning"></ion-icon>
+        <div class="achievement-text">
+          <h3>Parabéns!</h3>
+          <p>Você completou: {{ completedGoals.join(', ') }}</p>
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

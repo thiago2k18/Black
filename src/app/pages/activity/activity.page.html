@@ -1,0 +1,169 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Nova Atividade</ion-title>
+    <ion-buttons slot="end">
+      <ion-chip [color]="statusColor" size="small">
+        <ion-label>{{ activityStatus }}</ion-label>
+      </ion-chip>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="activity-content">
+  <!-- Overlay de Contagem Regressiva -->
+  <div class="countdown-overlay" *ngIf="isCountingDown">
+    <div class="countdown-circle">
+      <span class="countdown-number">{{ countdownNumber }}</span>
+    </div>
+    <p class="countdown-text">Iniciando atividade...</p>
+  </div>
+
+  <div class="activity-container">
+    <!-- Mapa -->
+    <div class="map-section">
+      <!-- Mapa Online (Mapbox) -->
+      <div #mapContainer class="map-container" *ngIf="!isOfflineMode"></div>
+      
+      <!-- Mapa Offline -->
+      <app-offline-map 
+        *ngIf="isOfflineMode"
+        [currentPosition]="getLastRoutePoint()"
+        [route]="currentActivity?.route || []"
+        [isTracking]="isTracking">
+      </app-offline-map>
+    </div>
+
+    <!-- Métricas em Tempo Real -->
+    <ion-card class="metrics-card">
+      <ion-card-content>
+        <!-- Métricas Principais (Linha Superior) -->
+        <div class="metrics-row primary-metrics">
+          <div class="metric-card">
+            <ion-icon name="time-outline" color="primary"></ion-icon>
+            <div class="metric-info">
+              <div class="metric-value">{{ formattedDuration }}</div>
+              <div class="metric-label">Duração</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <ion-icon name="location-outline" color="secondary"></ion-icon>
+            <div class="metric-info">
+              <div class="metric-value">{{ formattedDistance }}</div>
+              <div class="metric-label">Distância</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas Secundárias (Linha Inferior) -->
+        <div class="metrics-row secondary-metrics">
+          <div class="metric-card">
+            <ion-icon name="walk-outline" color="tertiary"></ion-icon>
+            <div class="metric-info">
+              <div class="metric-value">{{ currentMetrics.steps.toLocaleString() }}</div>
+              <div class="metric-label">Passos</div>
+            </div>
+          </div>
+          <div class="metric-card">
+            <ion-icon name="speedometer-outline" color="warning"></ion-icon>
+            <div class="metric-info">
+              <div class="metric-value">{{ formattedSpeed }}</div>
+              <div class="metric-label">Velocidade</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calorias (Destaque) -->
+        <div class="calories-banner">
+          <ion-icon name="fitness-outline" color="danger"></ion-icon>
+          <span class="calories-text">{{ currentMetrics.calories }} calorias queimadas</span>
+          <small style="display: block; margin-top: 4px; opacity: 0.7; font-size: 12px;">
+            *Cálculo em desenvolvimento
+          </small>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Controles da Atividade -->
+    <ion-card class="controls-card">
+      <ion-card-content>
+        <div class="main-controls">
+          <!-- Botão Principal -->
+          <ion-button 
+            *ngIf="!currentActivity" 
+            expand="block" 
+            size="large" 
+            color="success" 
+            (click)="startActivity()"
+            class="control-btn">
+            <ion-icon name="play-outline" slot="start"></ion-icon>
+            Iniciar Caminhada
+          </ion-button>
+
+          <!-- Controles Durante Atividade -->
+          <div *ngIf="currentActivity" class="activity-controls">
+            <ion-button 
+              *ngIf="!isPaused" 
+              expand="block" 
+              size="large" 
+              color="warning" 
+              (click)="pauseActivity()"
+              class="control-btn">
+              <ion-icon name="pause-outline" slot="start"></ion-icon>
+              Pausar Atividade
+            </ion-button>
+
+            <ion-button 
+              *ngIf="isPaused" 
+              expand="block" 
+              size="large" 
+              color="success" 
+              (click)="resumeActivity()"
+              class="control-btn">
+              <ion-icon name="play-outline" slot="start"></ion-icon>
+              Retomar Atividade
+            </ion-button>
+
+            <ion-button 
+              expand="block" 
+              size="large" 
+              color="danger" 
+              (click)="stopActivity()"
+              class="control-btn">
+              <ion-icon name="stop-outline" slot="start"></ion-icon>
+              Finalizar Atividade
+            </ion-button>
+          </div>
+        </div>
+
+        <!-- Controles Secundários -->
+        <div class="secondary-controls" *ngIf="currentActivity">
+          <ion-button fill="outline" (click)="takePhoto()">
+            <ion-icon name="camera-outline" slot="start"></ion-icon>
+            Tirar Foto
+          </ion-button>
+          
+          <ion-button 
+            fill="outline" 
+            [color]="isFlashlightOn ? 'warning' : 'medium'"
+            (click)="toggleFlashlight()">
+            <ion-icon name="flashlight-outline" slot="start"></ion-icon>
+            {{ isFlashlightOn ? 'Desligar Lanterna' : 'Ligar Lanterna' }}
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+
+  <!-- FABs para ações rápidas -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="currentActivity">
+    <ion-fab-button color="tertiary" size="small" (click)="takePhoto()">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

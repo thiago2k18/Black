@@ -1,0 +1,95 @@
+.history-container {
+  padding: 16px;
+}
+
+.empty-state {
+  margin: 40px 16px;
+  text-align: center;
+  
+  .empty-content {
+    padding: 40px 20px;
+    
+    ion-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    
+    h2 {
+      color: var(--ion-color-dark);
+      margin: 16px 0 8px 0;
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+  }
+}
+
+.activity-item {
+  --padding-start: 0;
+  --padding-end: 0;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  
+  .activity-content {
+    width: 100%;
+    padding: 16px;
+    
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--ion-color-dark);
+      }
+      
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        .delete-btn {
+          --padding-start: 8px;
+          --padding-end: 8px;
+          --padding-top: 8px;
+          --padding-bottom: 8px;
+          min-height: 32px;
+          min-width: 32px;
+          
+          ion-icon {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+    
+    .activity-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      
+      .metric {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        ion-icon {
+          font-size: 20px;
+        }
+        
+        span {
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--ion-color-dark);
+        }
+      }
+    }
+  }
+}

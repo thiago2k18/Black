@@ -1,0 +1,140 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mapas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="refreshMap()">
+        <ion-icon name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="maps-container">
+    <!-- Controles do Mapa -->
+    <ion-card class="controls-card">
+      <ion-card-content>
+        <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChange($event)">
+          <ion-segment-button value="current">
+            <ion-icon name="location-outline"></ion-icon>
+            <ion-label>Atual</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="routes">
+            <ion-icon name="walk-outline"></ion-icon>
+            <ion-label>Rotas</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="heatmap">
+            <ion-icon name="analytics-outline"></ion-icon>
+            <ion-label>Mapa de Calor</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+        
+        <div class="map-actions">
+          <ion-button fill="outline" size="small" (click)="centerOnUser()">
+            <ion-icon name="navigate-outline" slot="start"></ion-icon>
+            Centralizar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Container do Mapa -->
+    <div class="map-wrapper">
+      <div #mapContainer class="map-container"></div>
+    </div>
+
+    <!-- Lista de Atividades (quando rotas estão selecionadas) -->
+    <ion-card class="activities-card" *ngIf="selectedSegment === 'routes' && activities.length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="walk-outline" color="primary"></ion-icon>
+          Suas Rotas ({{ activities.length }})
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item 
+            *ngFor="let activity of activities; let i = index" 
+            button 
+            (click)="selectActivity(activity)"
+            class="activity-item"
+            [class.selected]="selectedActivityId === activity.id">
+            <div class="activity-info">
+              <div class="activity-header">
+                <h3>{{ formatDate(activity.createdAt) }}</h3>
+                <div class="route-color" [style.background-color]="getRouteColor(i)"></div>
+              </div>
+              <div class="activity-metrics">
+                <span class="metric">
+                  <ion-icon name="footsteps-outline" class="animated-icon"></ion-icon>
+                  {{ formatDistance(activity.distance) }}
+                </span>
+                <span class="metric">
+                  <ion-icon name="time-outline" class="animated-icon"></ion-icon>
+                  {{ formatDuration(activity.duration) }}
+                </span>
+                <span class="metric">
+                  <ion-icon name="speedometer-outline" class="animated-icon"></ion-icon>
+                  {{ formatSpeed(activity.averageSpeed) }}
+                </span>
+              </div>
+            </div>
+            <ion-icon name="chevron-forward-outline" slot="end" color="medium"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Estatísticas do Mapa de Calor -->
+    <ion-card class="heatmap-stats" *ngIf="selectedSegment === 'heatmap' && activities.length > 0">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="analytics-outline" color="danger"></ion-icon>
+          Análise de Atividades
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">{{ getTotalDistance() }}</div>
+            <div class="stat-label">Distância Total</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{{ getTotalActivities() }}</div>
+            <div class="stat-label">Atividades</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{{ getAverageDistance() }}</div>
+            <div class="stat-label">Média por Atividade</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">{{ getMostActiveArea() }}</div>
+            <div class="stat-label">Área Mais Ativa</div>
+          </div>
+        </div>
+        <div class="heatmap-legend">
+          <div class="legend-title">Intensidade de Atividade:</div>
+          <div class="legend-gradient">
+            <span class="legend-label">Baixa</span>
+            <div class="gradient-bar"></div>
+            <span class="legend-label">Alta</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Estado Vazio -->
+    <ion-card class="empty-state" *ngIf="activities.length === 0">
+      <ion-card-content>
+        <div class="empty-content">
+          <ion-icon name="map-outline" size="large" color="medium"></ion-icon>
+          <h2>Nenhuma rota ainda</h2>
+          <p>Suas caminhadas com GPS aparecerão aqui no mapa.</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

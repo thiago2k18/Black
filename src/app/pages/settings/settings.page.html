@@ -1,0 +1,227 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Configurações</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="saveSettings()">
+        <ion-icon name="save-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="settings-container">
+    <!-- Notificações -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="notifications-outline" color="primary"></ion-icon>
+          Notificações
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Ativar Notificações</ion-label>
+            <ion-toggle 
+              [(ngModel)]="settings.notifications.enabled" 
+              (ionChange)="onNotificationToggle()">
+            </ion-toggle>
+          </ion-item>
+          
+          <ion-item [disabled]="!settings.notifications.enabled">
+            <ion-label>Lembretes de Atividade</ion-label>
+            <ion-toggle [(ngModel)]="settings.notifications.activityReminders"></ion-toggle>
+          </ion-item>
+          
+          <ion-item [disabled]="!settings.notifications.enabled">
+            <ion-label>Conquistas</ion-label>
+            <ion-toggle [(ngModel)]="settings.notifications.goalAchievements"></ion-toggle>
+          </ion-item>
+          
+          <ion-item [disabled]="!settings.notifications.enabled">
+            <ion-label>Relatórios Semanais</ion-label>
+            <ion-toggle [(ngModel)]="settings.notifications.weeklyReports"></ion-toggle>
+          </ion-item>
+          
+          <ion-item [disabled]="!settings.notifications.enabled">
+            <ion-label>Som</ion-label>
+            <ion-toggle [(ngModel)]="settings.notifications.soundEnabled"></ion-toggle>
+          </ion-item>
+          
+          <ion-item [disabled]="!settings.notifications.enabled">
+            <ion-label>Vibração</ion-label>
+            <ion-toggle [(ngModel)]="settings.notifications.vibrationEnabled"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Unidades -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="options-outline" color="secondary"></ion-icon>
+          Unidades
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Distância</ion-label>
+            <ion-select [(ngModel)]="settings.units.distance" interface="popover">
+              <ion-select-option value="km">Quilômetros (km)</ion-select-option>
+              <ion-select-option value="mi">Milhas (mi)</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Velocidade</ion-label>
+            <ion-select [(ngModel)]="settings.units.speed" interface="popover">
+              <ion-select-option value="kmh">km/h</ion-select-option>
+              <ion-select-option value="mph">mph</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Metas Diárias -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="trophy-outline" color="warning"></ion-icon>
+          Metas Diárias
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="goal-setting">
+          <ion-label>Passos: {{ formatStepsValue(settings.goals.dailySteps) }}</ion-label>
+          <ion-range 
+            [(ngModel)]="settings.goals.dailySteps"
+            min="1000" 
+            max="30000" 
+            step="500"
+            color="primary">
+          </ion-range>
+        </div>
+        
+        <div class="goal-setting">
+          <ion-label>Distância: {{ formatDistanceValue(settings.goals.dailyDistance) }}</ion-label>
+          <ion-range 
+            [(ngModel)]="settings.goals.dailyDistance"
+            min="1000" 
+            max="20000" 
+            step="500"
+            color="secondary">
+          </ion-range>
+        </div>
+        
+        <div class="goal-setting">
+          <ion-label>Tempo: {{ formatDurationValue(settings.goals.dailyDuration) }}</ion-label>
+          <ion-range 
+            [(ngModel)]="settings.goals.dailyDuration"
+            min="15" 
+            max="180" 
+            step="15"
+            color="tertiary">
+          </ion-range>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Aparência -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="brush-outline" color="tertiary"></ion-icon>
+          Aparência
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Tema</ion-label>
+            <ion-select 
+              [(ngModel)]="settings.appearance.theme" 
+              (ionChange)="onThemeChange()"
+              interface="popover">
+              <ion-select-option value="auto">Automático</ion-select-option>
+              <ion-select-option value="light">Claro</ion-select-option>
+              <ion-select-option value="dark">Escuro</ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>Estilo do Mapa</ion-label>
+            <ion-select [(ngModel)]="settings.appearance.mapStyle" interface="popover">
+              <ion-select-option value="streets">Ruas</ion-select-option>
+              <ion-select-option value="satellite">Satélite</ion-select-option>
+              <ion-select-option value="outdoors">Outdoor</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Privacidade -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="lock-closed-outline" color="medium"></ion-icon>
+          Privacidade
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Compartilhar Localização</h3>
+              <p>Permitir que outros vejam sua localização</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="settings.privacy.shareLocation"></ion-toggle>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label>
+              <h3>Compartilhar Atividades</h3>
+              <p>Permitir que outros vejam suas atividades</p>
+            </ion-label>
+            <ion-toggle [(ngModel)]="settings.privacy.shareActivities"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Ações -->
+    <ion-card class="settings-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="settings-outline" color="dark"></ion-icon>
+          Ações
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="action-buttons">
+          <ion-button expand="block" fill="outline" (click)="getStorageInfo()">
+            <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+            Info do Storage
+          </ion-button>
+          
+          <ion-button expand="block" fill="outline" color="warning" (click)="resetSettings()">
+            <ion-icon name="refresh-outline" slot="start"></ion-icon>
+            Resetar Configurações
+          </ion-button>
+          
+          <ion-button expand="block" fill="outline" color="danger" (click)="clearAppData()">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            Limpar Dados do App
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

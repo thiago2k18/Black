@@ -1,0 +1,262 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sobre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="about-container">
+    <!-- História do App -->
+    <ion-card class="story-card">
+      <ion-card-content>
+        <div class="app-header">
+          <div class="app-icon">
+            <ion-icon name="walk-outline" size="large" color="primary"></ion-icon>
+          </div>
+          <div class="app-details">
+            <h1>AndarBem</h1>
+            <p class="tagline">Sua jornada de bem-estar</p>
+            <ion-chip color="success" size="small">
+              <ion-label>Versão 1.0.0</ion-label>
+            </ion-chip>
+          </div>
+        </div>
+        
+        <div class="story-content">
+          <h2>Nossa História</h2>
+          <p>O AndarBem nasceu de uma ideia simples: <strong>tornar a caminhada mais divertida e motivadora</strong>. 
+          Percebemos que muitas pessoas queriam se exercitar mais, mas faltava aquele empurrãozinho para sair de casa.</p>
+          
+          <p>Então criamos um app que não é só um contador de passos - é seu <strong>companheiro de caminhada</strong>! 
+          Ele funciona até sem internet, porque sabemos que você quer caminhar em qualquer lugar, 
+          seja no parque, na praia ou naquela trilha especial.</p>
+          
+          <p>Cada funcionalidade foi pensada para ser <strong>natural e humana</strong>. Nada de textos robóticos 
+          ou interfaces complicadas. Queremos que você se sinta acolhido e motivado a cada passo!</p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- O que faz o AndarBem especial -->
+    <ion-card class="features-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="heart-outline" color="danger"></ion-icon>
+          O que torna o AndarBem único
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="special-features">
+          <div class="feature-item">
+            <ion-icon name="wifi-outline" color="success"></ion-icon>
+            <div class="feature-content">
+              <h3>Funciona offline</h3>
+              <p>Você pode caminhar na praia, trilhas ou qualquer lugar sem se preocupar com internet. O GPS funciona offline e suas caminhadas ficam salvas</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <ion-icon name="happy-outline" color="warning"></ion-icon>
+            <div class="feature-content">
+              <h3>Linguagem amigável</h3>
+              <p>Criamos textos naturais e acolhedores. Em vez de termos técnicos, você vê mensagens como "Que caminhada incrível!"</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <ion-icon name="flash-outline" color="primary"></ion-icon>
+            <div class="feature-content">
+              <h3>Simplicidade em primeiro lugar</h3>
+              <p>Abriu o app? É só tocar em "Iniciar Caminhada" e começar! Sem cadastros longos ou configurações complicadas</p>
+            </div>
+          </div>
+          
+          <div class="feature-item">
+            <ion-icon name="shield-checkmark-outline" color="success"></ion-icon>
+            <div class="feature-content">
+              <h3>Privacidade respeitada</h3>
+              <p>Seus dados ficam seguros no seu celular. Respeitamos sua privacidade e não compartilhamos informações pessoais</p>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Como usar -->
+    <ion-card class="howto-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="play-circle-outline" color="primary"></ion-icon>
+          Como começar sua jornada
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Abra o app</h3>
+              <p>É só isso mesmo! O AndarBem foi feito para ser simples. Não precisa criar conta ou configurar nada</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Toque em "Nova Caminhada"</h3>
+              <p>Você pode usar o botão na tela principal também. O GPS vai se preparar automaticamente para te acompanhar</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Comece a caminhar!</h3>
+              <p>O app vai contar seus passos, medir a distância e mostrar tudo em tempo real. Funciona mesmo sem internet</p>
+            </div>
+          </div>
+          
+          <div class="step-item">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Acompanhe seu progresso</h3>
+              <p>No final, você vê um resumo completo da caminhada e pode salvar no histórico para celebrar sua evolução</p>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Funcionalidades principais -->
+    <ion-card class="main-features-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="star-outline" color="warning"></ion-icon>
+          O que você pode fazer
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="features-list">
+          <div class="feature-row">
+            <ion-icon name="footsteps-outline" color="primary"></ion-icon>
+            <span>Contar passos automaticamente</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="location-outline" color="success"></ion-icon>
+            <span>Rastrear sua rota no mapa (online e offline)</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="time-outline" color="warning"></ion-icon>
+            <span>Cronometrar o tempo de caminhada</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="speedometer-outline" color="danger"></ion-icon>
+            <span>Ver sua velocidade em tempo real</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="fitness-outline" color="tertiary"></ion-icon>
+            <span>Calcular calorias queimadas</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="camera-outline" color="medium"></ion-icon>
+            <span>Tirar fotos durante a caminhada</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="library-outline" color="secondary"></ion-icon>
+            <span>Salvar histórico de todas as atividades</span>
+          </div>
+          <div class="feature-row">
+            <ion-icon name="trophy-outline" color="warning"></ion-icon>
+            <span>Acompanhar metas e conquistas</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Desenvolvedor -->
+    <ion-card class="developer-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="person-outline" color="primary"></ion-icon>
+          Desenvolvedor
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="developer-info">
+          <div class="developer-details">
+            <h2>Tiago Ribeiro</h2>
+            <p class="role">Desenvolvedor</p>
+            <p class="bio">Apaixonado por criar aplicações que promovem saúde e bem-estar. 
+            O AndarBem nasceu do desejo de tornar a caminhada mais divertida e acessível para todos!</p>
+          </div>
+        </div>
+        
+        <div class="contact-buttons">
+          <ion-button fill="outline" size="small" (click)="openLink('https://www.linkedin.com/in/tiago-ribeiro-de-sous')">
+            <ion-icon name="logo-linkedin" slot="start"></ion-icon>
+            LinkedIn
+          </ion-button>
+          <ion-button fill="outline" size="small" (click)="openLink('https://www.instagram.com/rthiago_ribeiro013k?igsh=Mjd0Zmk2YW1zbWp1')">
+            <ion-icon name="logo-instagram" slot="start"></ion-icon>
+            Instagram
+          </ion-button>
+          <ion-button fill="outline" size="small" (click)="openLink('https://github.com/thiago2k18/Django---Admin')">
+            <ion-icon name="logo-github" slot="start"></ion-icon>
+            GitHub
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Gostou do app? -->
+    <ion-card class="feedback-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="thumbs-up-outline" color="success"></ion-icon>
+          Gostou do AndarBem?
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="feedback-text">
+          Sua opinião é muito importante! Se o app te ajudou a caminhar mais, 
+          que tal compartilhar com os amigos ou deixar uma avaliação?
+        </p>
+        
+        <div class="action-buttons">
+          <ion-button expand="block" color="primary" (click)="shareApp()">
+            <ion-icon name="share-outline" slot="start"></ion-icon>
+            Compartilhar com amigos
+          </ion-button>
+          
+          <ion-button expand="block" fill="outline" color="warning" (click)="rateApp()">
+            <ion-icon name="star-outline" slot="start"></ion-icon>
+            Avaliar na loja
+          </ion-button>
+          
+          <ion-button expand="block" fill="outline" (click)="sendFeedback()">
+            <ion-icon name="chatbubble-outline" slot="start"></ion-icon>
+            Enviar sugestão
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensagem final -->
+    <div class="final-message">
+      <div class="message-content">
+        <ion-icon name="walk-outline" color="primary" size="large"></ion-icon>
+        <h3>Continue caminhando!</h3>
+        <p>Cada passo conta na sua jornada de bem-estar. 
+        O AndarBem está aqui para te acompanhar sempre!</p>
+      </div>
+      
+      <div class="credits">
+        <p class="version">AndarBem v1.0.0 • 2025</p>
+        <p class="copyright"> 2025 Todos os direitos reservados a Tiago Ribeiro</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

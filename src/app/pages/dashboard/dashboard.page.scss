@@ -1,0 +1,485 @@
+.dashboard-container {
+  padding: 20px 16px;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.welcome-section {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border: 1px solid #f1f3f4;
+
+  .welcome-content {
+    text-align: left;
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 15px;
+      color: #7f8c8d;
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+}
+
+.main-action {
+  padding: 0 16px 20px 16px;
+
+  .start-activity-btn {
+    --border-radius: 25px;
+    height: 52px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: none;
+    --background: #3498db;
+    --background-activated: #2980b9;
+    --background-hover: #2980b9;
+    --color: white;
+    overflow: hidden;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 0 16px 20px 16px;
+
+  .stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border: 1px solid #f1f3f4;
+
+    .stat-value {
+      font-size: 22px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: #95a5a6;
+      text-transform: uppercase;
+    }
+
+    ion-icon {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.progress-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-header {
+    padding-bottom: 8px;
+
+    ion-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .progress-item {
+    text-align: center;
+    padding: 16px 8px;
+
+    .progress-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+
+      ion-icon {
+        font-size: 24px;
+        animation: walkingAnimation 2s ease-in-out infinite;
+        transform-origin: center bottom;
+      }
+
+      .progress-label {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ion-color-dark);
+      }
+    }
+
+    .progress-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+      margin-bottom: 12px;
+    }
+
+    ion-progress-bar {
+      height: 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .progress-percentage {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ion-color-medium);
+    }
+  }
+
+  .calories-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(244, 67, 54, 0.1);
+    border-radius: 12px;
+    margin-top: 16px;
+
+    ion-icon {
+      font-size: 24px;
+    }
+
+    .calories-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ion-color-danger);
+    }
+  }
+}
+
+.stats-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-header {
+    padding-bottom: 8px;
+
+    ion-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 16px 8px;
+
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ion-color-primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--ion-color-medium);
+      font-weight: 500;
+    }
+  }
+}
+
+.quick-actions-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  ion-card-header {
+    padding-bottom: 8px;
+
+    ion-card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ion-color-dark);
+    }
+  }
+
+  .quick-action-btn {
+    --border-radius: 25px;
+    height: 80px;
+    margin: 4px 0;
+    text-transform: none;
+    font-weight: 600;
+
+    ion-icon {
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+.achievements-card {
+  margin: 16px;
+  .dashboard-container {
+    padding: 20px 16px;
+    background: #f8f9fa;
+    min-height: 100vh;
+  }
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+
+  .achievement-celebration {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px;
+
+    ion-icon {
+      font-size: 48px;
+      color: white;
+    }
+
+    .achievement-text {
+      flex: 1;
+
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 0;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .progress-item {
+    margin-bottom: 16px;
+  }
+
+  .stat-item {
+    margin-bottom: 8px;
+  }
+
+  .quick-action-btn {
+    height: 70px;
+    font-size: 14px;
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+// Animações
+.progress-card,
+.stats-card,
+.quick-actions-card,
+.achievements-card {
+  animation: slideInUp 0.3s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Animações para ícones das métricas
+@keyframes walkingAnimation {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(2px) rotate(-3deg);
+  }
+  50% {
+    transform: translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateX(-2px) rotate(3deg);
+  }
+}
+
+@keyframes runningAnimation {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(3px) scale(1.05);
+  }
+  50% {
+    transform: translateX(0) scale(1);
+  }
+  75% {
+    transform: translateX(-3px) scale(1.05);
+  }
+}
+
+@keyframes pulseAnimation {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+// Animações específicas por tipo de métrica
+.progress-item:nth-child(1) {
+  .progress-header ion-icon {
+    animation-delay: 0s;
+    animation-name: walkingAnimation;
+  }
+}
+
+.progress-item:nth-child(2) {
+  .progress-header ion-icon {
+    animation-delay: 0.3s;
+    animation-name: runningAnimation;
+  }
+}
+
+.progress-item:nth-child(3) {
+  .progress-header ion-icon {
+    animation-delay: 0.6s;
+    animation-name: pulseAnimation;
+  }
+}
+
+// Estados de carregamento
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// Tema escuro
+:host-context(.dark-theme) {
+  .progress-card,
+  .stats-card,
+  .quick-actions-card {
+    background: var(--ion-color-dark);
+    
+    ion-card-title {
+      color: var(--ion-text-color);
+    }
+  }
+
+  .progress-item {
+    .progress-header .progress-label,
+    .progress-value {
+      color: var(--ion-text-color);
+    }
+  }
+
+  .stat-item {
+    .stat-value {
+      color: var(--ion-color-primary);
+    }
+    
+    .stat-label {
+      color: var(--ion-text-color);
+    }
+  }
+  
+  .welcome-section {
+    background: var(--ion-color-step-50);
+    
+    .welcome-content {
+      h1 {
+        color: var(--ion-text-color);
+      }
+      
+      p {
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}
+
+// Chip de sincronização no header - ALTA VISIBILIDADE
+.sync-chip {
+  --background: #ffffff !important;
+  --color: #2c3e50 !important;
+  font-weight: 600 !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2) !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+  min-height: 28px !important;
+  padding: 4px 8px !important;
+  
+  ion-icon {
+    color: #2c3e50 !important;
+    font-size: 14px !important;
+  }
+  
+  ion-label {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    margin-left: 4px !important;
+  }
+}
+
+// Estados específicos com MÁXIMO CONTRASTE
+ion-chip.sync-chip[color="success"] {
+  --background: #27ae60 !important;
+  --color: #ffffff !important;
+  border-color: #2ecc71 !important;
+  
+  ion-icon,
+  ion-label {
+    color: #ffffff !important;
+  }
+}
+
+ion-chip.sync-chip[color="warning"] {
+  --background: #f39c12 !important;
+  --color: #ffffff !important;
+  border-color: #e67e22 !important;
+  
+  ion-icon,
+  ion-label {
+    color: #ffffff !important;
+  }
+}
+
+ion-chip.sync-chip[color="medium"] {
+  --background: #7f8c8d !important;
+  --color: #ffffff !important;
+  border-color: #95a5a6 !important;
+  
+  ion-icon,
+  ion-label {
+    color: #ffffff !important;
+  }
+}

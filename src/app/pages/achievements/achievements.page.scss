@@ -1,0 +1,206 @@
+.achievements-container {
+  padding: 16px;
+}
+
+.section-card {
+  margin-bottom: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ion-color-dark);
+
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+}
+
+.achievements-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+
+  &.unlocked {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(139, 195, 74, 0.1) 100%);
+    border: 2px solid rgba(76, 175, 80, 0.3);
+
+    .achievement-icon {
+      background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    }
+
+    .achievement-content h3 {
+      color: var(--ion-color-success);
+    }
+  }
+
+  &.locked {
+    background: rgba(var(--ion-color-light-rgb), 0.5);
+    border: 2px solid var(--ion-color-light);
+
+    .achievement-icon {
+      background: var(--ion-color-medium);
+      color: white;
+    }
+
+    .achievement-content h3 {
+      color: var(--ion-color-medium);
+    }
+  }
+
+  .achievement-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    ion-icon {
+      font-size: 32px;
+    }
+  }
+
+  .achievement-content {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 4px 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: var(--ion-color-medium);
+      line-height: 1.4;
+    }
+
+    .progress-section {
+      margin-top: 12px;
+
+      .progress-text {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ion-color-dark);
+        margin-bottom: 4px;
+      }
+
+      ion-progress-bar {
+        height: 6px;
+        border-radius: 3px;
+        margin-bottom: 4px;
+      }
+
+      .progress-percentage {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ion-color-medium);
+        text-align: right;
+      }
+    }
+  }
+}
+
+.empty-state {
+  margin: 40px 16px;
+  text-align: center;
+  
+  .empty-content {
+    padding: 40px 20px;
+    
+    ion-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    
+    h2 {
+      color: var(--ion-color-dark);
+      margin: 16px 0 8px 0;
+    }
+    
+    p {
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+  }
+}
+
+// Responsividade
+@media (max-width: 768px) {
+  .achievement-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+
+    .achievement-content {
+      width: 100%;
+    }
+  }
+}
+
+// Animações
+.achievement-item {
+  animation: slideInUp 0.3s ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Tema escuro
+@media (prefers-color-scheme: dark) {
+  .section-card {
+    background: var(--ion-color-dark);
+    
+    .section-title {
+      color: var(--ion-color-light);
+    }
+  }
+
+  .achievement-item {
+    &.locked {
+      background: rgba(var(--ion-color-dark-shade), 0.5);
+    }
+
+    .achievement-content {
+      h3 {
+        color: var(--ion-color-light);
+      }
+
+      p {
+        color: var(--ion-color-medium);
+      }
+    }
+  }
+}

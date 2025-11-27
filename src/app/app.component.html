@@ -1,0 +1,93 @@
+<ion-app>
+  <!-- Splash Screen -->
+  <app-splash-screen 
+    *ngIf="showSplash" 
+    (splashComplete)="onSplashComplete()">
+  </app-splash-screen>
+
+  <!-- App Principal -->
+  <ion-split-pane contentId="main-content" *ngIf="!showSplash">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <!-- Header do Menu -->
+        <div class="menu-header">
+          <div class="app-branding">
+            <div class="avatar-container" (click)="changeAvatar()">
+              <ion-avatar>
+                <img [src]="userInfo.avatar" alt="Avatar" />
+              </ion-avatar>
+              <div class="avatar-overlay">
+                <ion-icon name="camera-outline"></ion-icon>
+              </div>
+              <div class="avatar-badge">
+                <ion-icon name="add-outline"></ion-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu Principal -->
+        <ion-list id="main-menu">
+          <ion-list-header>
+            <ion-icon name="walk"></ion-icon>
+            AndarBem
+          </ion-list-header>
+
+          @for (page of appPages; track page) {
+            <ion-menu-toggle auto-hide="false">
+              <ion-item 
+                routerDirection="root" 
+                [routerLink]="[page.url]" 
+                lines="none" 
+                detail="false" 
+                routerLinkActive="selected"
+                class="menu-item">
+                <ion-icon 
+                  aria-hidden="true" 
+                  slot="start" 
+                  [ios]="page.icon + '-outline'" 
+                  [md]="page.icon + '-sharp'">
+                </ion-icon>
+                <ion-label>{{ page.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          }
+        </ion-list>
+
+        <!-- Menu de Configurações -->
+        <ion-list id="settings-menu">
+          <ion-list-header>Configurações</ion-list-header>
+
+          @for (option of menuOptions; track option) {
+            <ion-menu-toggle auto-hide="false">
+              <ion-item 
+                routerDirection="root" 
+                [routerLink]="[option.url]" 
+                lines="none" 
+                detail="false" 
+                routerLinkActive="selected"
+                class="menu-item">
+                <ion-icon 
+                  aria-hidden="true" 
+                  slot="start" 
+                  [ios]="option.icon + '-outline'" 
+                  [md]="option.icon + '-sharp'">
+                </ion-icon>
+                <ion-label>{{ option.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          }
+
+          <!-- Botão de Logout -->
+          <ion-menu-toggle auto-hide="false">
+            <ion-item button (click)="logout()" lines="none" class="menu-item logout-item">
+              <ion-icon aria-hidden="true" slot="start" ios="log-out-outline" md="log-out-sharp"></ion-icon>
+              <ion-label>Sair</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
